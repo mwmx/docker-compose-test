@@ -70,4 +70,9 @@ ENV NEXT_PUBLIC_ENV_VARIABLE=${NEXT_PUBLIC_ENV_VARIABLE}
 
 # Note: Don't expose ports here, Compose will handle that for us
 
+# Next.js standalone server.js binds to $HOSTNAME, which Docker sets to the
+# container ID (resolves to a single interface). Force it to all interfaces.
+ENV HOSTNAME=0.0.0.0
+ENV PORT=3000
+
 CMD ["node", "server.js"]
